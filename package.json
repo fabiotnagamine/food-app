@@ -8,7 +8,11 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "prisma": {
+    "schema": "schema.prisma"
+  },
   "dependencies": {
+    "@prisma/client": "^5.13.0",
     "next": "14.2.3",
     "prisma": "^5.13.0",
     "react": "^18",
