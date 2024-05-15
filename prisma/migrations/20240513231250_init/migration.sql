@@ -1,37 +1,5 @@
-/*
-  Warnings:
-
-  - You are about to drop the column `categoryID` on the `Product` table. All the data in the column will be lost.
-  - You are about to drop the column `restaurantID` on the `Product` table. All the data in the column will be lost.
-  - You are about to drop the `Restaraunt` table. If the table is not empty, all the data it contains will be lost.
-  - Added the required column `categoryId` to the `Product` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `restaurantId` to the `Product` table without a default value. This is not possible if the table is not empty.
-
-*/
 -- CreateEnum
 CREATE TYPE "OrderStatus" AS ENUM ('CONFIRMED', 'CANCELED', 'PREPARING', 'DELIVERING', 'COMPLETED');
-
--- DropForeignKey
-ALTER TABLE "Product" DROP CONSTRAINT "Product_categoryID_fkey";
-
--- DropForeignKey
-ALTER TABLE "Product" DROP CONSTRAINT "Product_restaurantID_fkey";
-
--- DropForeignKey
-ALTER TABLE "Restaraunt" DROP CONSTRAINT "Restaraunt_categoryId_fkey";
-
--- AlterTable
-ALTER TABLE "Category" ADD COLUMN     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;
-
--- AlterTable
-ALTER TABLE "Product" DROP COLUMN "categoryID",
-DROP COLUMN "restaurantID",
-ADD COLUMN     "categoryId" TEXT NOT NULL,
-ADD COLUMN     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-ADD COLUMN     "restaurantId" TEXT NOT NULL;
-
--- DropTable
-DROP TABLE "Restaraunt";
 
 -- CreateTable
 CREATE TABLE "accounts" (
@@ -97,6 +65,31 @@ CREATE TABLE "UserFavoriteRestaurant" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "UserFavoriteRestaurant_pkey" PRIMARY KEY ("userId","restaurantId")
+);
+
+-- CreateTable
+CREATE TABLE "Category" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "imageUrl" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Category_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Product" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "imageUrl" TEXT NOT NULL,
+    "price" DECIMAL(10,2) NOT NULL,
+    "discountPercentage" INTEGER NOT NULL DEFAULT 0,
+    "restaurantId" TEXT NOT NULL,
+    "categoryId" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable

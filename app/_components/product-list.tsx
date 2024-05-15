@@ -8,7 +8,7 @@ const ProductList = async () => {
         gt: 0,
       },
     },
-    take: 10,
+    take: 500,
       include: {
         restaurant: {
           select: {

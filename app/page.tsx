@@ -1,7 +1,6 @@
-import { ChevronRightIcon, Ghost } from "lucide-react";
+import { ChevronRightIcon } from "lucide-react";
 import CategoryList from "./_components/category-list";
 import Header from "./_components/header";
-import ProductItem from "./_components/product-item";
 import ProductList from "./_components/product-list";
 import Search from "./_components/search";
 import { Button } from "./_components/ui/button";

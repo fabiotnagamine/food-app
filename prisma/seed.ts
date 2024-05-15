@@ -869,7 +869,7 @@ const createDeserts = async (restaurantId: string, categoryId: string) => {
       },
     },
     {
-      name: "Torta de Morango",
+      name: "Cheese Cake Com calda de amora e framboesas",
       price: 45,
       description: description,
       discountPercentage: 5,
