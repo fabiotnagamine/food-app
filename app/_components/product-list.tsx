@@ -1,27 +1,24 @@
-import { db } from "../_lib/prisma";
+import { Prisma } from "@prisma/client";
 import ProductItem from "./product-item";
 
-const ProductList = async () => {
-  const product = await db.product.findMany({
-    where: {
-      discountPercentage: {
-        gt: 0,
-      },
-    },
-    take: 500,
-      include: {
-        restaurant: {
-          select: {
-            name: true,
-          },
-        },
-        }
-  }
-  );
+interface ProductListProps {
+  products: Prisma.ProductGetPayload<{
+    include: {
+      restaurant: {
+        select: {
+          name: true;
+        };
+      };
+    };
+  }>[];
+}
+
+const ProductList = async ({products}:ProductListProps) => {
+  
   return (
     <div className="{&::-webkit-scrollbar]:hidden flex gap-4 overflow-x-scroll">
-      {product.map((product) => (
-        <ProductItem key={product.id} product={product} />
+      {products.map((products) => (
+        <ProductItem key={products.id} product={products} />
       ))}
     </div>
   );
