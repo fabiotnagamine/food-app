@@ -1,7 +1,10 @@
+"use client"
+
 import { Prisma } from "@prisma/client";
 import Image from "next/image";
 import { calculateProductPrice } from "../_helpers/price";
 import { ArrowDownIcon } from "lucide-react";
+import Link from "next/link";
 
 interface ProductItemProps {
   product: Prisma.ProductGetPayload<{
@@ -19,6 +22,7 @@ interface ProductItemProps {
 
 const ProductItem = ({ product }: ProductItemProps) => {
   return (
+    <Link className="w-[150px] space-y-2" href={`/products/${product.id}`}>
     <div className="w-[150px] space-y-2">
       {/* div para a Imagem*/}
       <div className="relative h-[150px] w-full min-w-[150px] px-5">
@@ -64,6 +68,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
         </span>
       </div>
     </div>
+    </Link>
   );
 };
 
