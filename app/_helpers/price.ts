@@ -8,3 +8,9 @@ export const calculateProductPrice = (product: Product) =>{
         const total = Number(product.price) - discount;
         return total;
     }
+
+export const formatCurrency = (value: number): string => {
+    // Implement the logic to format the currency
+    // For example:
+    return `$${value.toFixed(2)}`;
+  }
